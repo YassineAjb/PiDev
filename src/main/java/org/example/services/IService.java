@@ -1,14 +1,15 @@
 package org.example.services;
 
+import org.example.models.Joueur;
+
 import java.sql.SQLException;
 import java.util.List;
 
-public interface IService<T> {
-    void add(T t) throws SQLException;
+public interface IService <T>{
 
-    void modify(T t) throws SQLException;
+    void ajouter(T t) throws SQLException;
+    void modifier(T t) throws SQLException;
+    void supprimer(int id) throws SQLException;
+    List<T> afficher() throws SQLException;
 
-    void remove(int id) throws SQLException;
-
-    List<T> getall() throws SQLException;
 }
