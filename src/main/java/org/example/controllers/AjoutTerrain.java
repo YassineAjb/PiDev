@@ -6,12 +6,19 @@ import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Priority;
+import javafx.stage.Stage;
 import org.example.services.ServiceTerrain;
 import org.example.models.Terrain ;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AjoutTerrain {
@@ -48,7 +55,16 @@ public class AjoutTerrain {
     @FXML
     private DatePicker datePicker ;
 
+
+    @FXML
+    private ImageView Retour;
+
+
     public void initialize() {
+        Retour.setOnMouseClicked(event -> {
+            loadListeReservationView();
+        });
+
         mapView = createMapView();
         Emplacement.getChildren().add(mapView);
         VBox.setVgrow(mapView, Priority.ALWAYS);
@@ -56,6 +72,8 @@ public class AjoutTerrain {
         GeoX.setText("36.90367103784889");
         GeoY.setText("10.190358937780948");
         updateMapPoint(); // Update initially
+
+
     }
 
     @FXML
@@ -110,10 +128,29 @@ public class AjoutTerrain {
         // Add any additional verification logic here
     }
 
-    @FXML
-    void onVerifyButtonClicked(ActionEvent event) {
 
-        addTerrain();
+
+    private void loadListeReservationView() {
+        try {
+            // Load the ListeReservation.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reservation.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the current stage (window)
+            Stage stage = (Stage) Retour.getScene().getWindow();
+
+            // Set the scene on the stage
+            stage.setScene(scene);
+
+            // Show the stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception (e.g., show an error message)
+        }
     }
 }
 

@@ -22,7 +22,7 @@ import org.example.models.Terrain;
 import java.util.List;
 
 public class Reservation {
-//Affichage liste de terrains dediée pour ADMIN Apres il y'a crud Terrains  :
+//Affichage liste de terrains lel ADMIN Apres il y'a crud Terrains  :
 
     @FXML
     private ListView<Terrain> affichage;
@@ -49,7 +49,6 @@ public class Reservation {
 
             affichage.setItems(observableArrayList);
         } catch (SQLException e) {
-            // Gestion de l'exception
             e.printStackTrace();
         }
 
@@ -64,12 +63,12 @@ public class Reservation {
         System.out.println(selectedTerrain);
         if (selectedTerrain != null) {
             int idTerrain = selectedTerrain.getId(); // Supposons que getId() renvoie l'ID du produit
-            System.out.println("ID du produit sélectionné : " + idTerrain);
+            System.out.println("ID du Terrain sélectionné : " + idTerrain);
             serviceTerrain.supprimer(idTerrain);
             this.initialize();
         } else {
             // Aucun produit sélectionné, gestion de l'erreur ou notification à l'utilisateur
-            System.out.println("Aucun produit sélectionné.");
+            System.out.println("Aucun Terrain sélectionné.");
         }
 
 
@@ -81,21 +80,16 @@ public class Reservation {
     private void handleAjouterButtonAction(ActionEvent event)
     {
         try {
-            // Load the new FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterTerrain.fxml"));
             Parent root = loader.load();
 
-            // Create a new scene
             Scene scene = new Scene(root);
-
-            // Get the stage from the ActionEvent
             Stage stage = (Stage) btnAjouter.getScene().getWindow();
 
-            // Set the new scene on the stage
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // Handle the exception appropriately
+            e.printStackTrace();
         }
     }
 
@@ -107,7 +101,7 @@ public class Reservation {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierTerrain.fxml"));
                 Parent root = loader.load();
                 ModifierTerrain controller = loader.getController();
-                controller.initData(selectedTerrain); // Passer le produit sélectionné au contrôleur ModifierProduit
+                controller.initData(selectedTerrain);
                 Stage stage = (Stage) btnModifier.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -115,7 +109,6 @@ public class Reservation {
                 e.printStackTrace();
             }
         } else {
-            // Gérer le cas où aucun produit n'est sélectionné
         }}
 
 

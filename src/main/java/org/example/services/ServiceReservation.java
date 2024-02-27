@@ -3,6 +3,7 @@ package org.example.services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.models.Reservation;
+import org.example.models.Terrain;
 import org.example.utils.MyDataBase;
 
 import java.sql.*;
@@ -29,7 +30,7 @@ public class ServiceReservation {
             while (resultSet.next()) {
                 Reservation reservation = new Reservation();
                 reservation.setReservationID(resultSet.getInt("reservationID"));
-                reservation.setChoixTerrain(resultSet.getString("choixTerrain"));
+                reservation.setChoixTerrain(String.valueOf(resultSet.getInt("idTerrain")));
                 reservation.setDateReservation(resultSet.getString("dateReservation"));
                 reservation.setNote(resultSet.getString("note"));
                 reservation.setEmplacement(resultSet.getString("emplacement"));
@@ -67,8 +68,9 @@ public class ServiceReservation {
 
         while (rs.next()) {
             Reservation p = new Reservation();
+            Terrain terrain = new Terrain();
             p.setReservationID(rs.getInt("ReservationID"));
-            p.setChoixTerrain(rs.getString("Choixterrain"));
+            p.setChoixTerrain(String.valueOf(rs.getInt("idTerrain")));
             p.setDateReservation(rs.getString("DateReservation"));
             p.setNote(rs.getString("Note"));
             p.setEmplacement(rs.getString("Emplacement"));
@@ -85,7 +87,6 @@ public class ServiceReservation {
         preparedStatement.setInt(1,id);
         preparedStatement.executeUpdate();
     }
-
 
 
     public void modifier(Reservation reservation) throws SQLException {

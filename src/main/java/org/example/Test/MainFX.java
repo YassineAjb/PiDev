@@ -18,10 +18,11 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Terrain.fxml"));
+           // FXMLLoader loader = new FXMLLoader(getClass().getResource("/listeReservation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reservation.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Gérer personnes");
+            primaryStage.setTitle("SWIFTMINDER");
             primaryStage.setScene(scene);
             primaryStage.show();
         }catch (IOException e){

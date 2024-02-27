@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ModifierReservation">
    <children>
       <AnchorPane layoutX="4.0" layoutY="5.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -40,6 +39,11 @@
                               <ChoiceBox fx:id="Choixterrain" layoutX="1.0" layoutY="110.0" prefHeight="33.0" prefWidth="224.0" />
                               <ListView fx:id="DateReservation" layoutX="1.0" layoutY="198.0" prefHeight="195.0" prefWidth="246.0" />
                               <Label layoutX="-1.0" layoutY="157.0" prefHeight="44.0" prefWidth="246.0" text="Dates disponibles :  " />
+                              <ImageView fx:id="Retour" fitHeight="29.0" fitWidth="37.0" layoutX="620.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Retour.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Pane>
                      </children>

@@ -2,22 +2,26 @@ package org.example.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.example.models.Reservation;
-import org.example.models.Terrain;
 import org.example.services.ServiceReservation;
 import org.example.services.ServiceTerrain;
 
-import java.sql.PreparedStatement;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalTime;
 
 public class ModifierReservation {
 
 
+    @FXML
+    private ImageView Retour;
 
     @FXML
     private ChoiceBox<String> Choixterrain;
@@ -40,6 +44,10 @@ public class ModifierReservation {
     @FXML
     private void initialize() {
         DateReservation.getItems().addAll(lol);
+
+        Retour.setOnMouseClicked(event -> {
+            loadListeReservationView();
+        });
     }
 
 
@@ -70,7 +78,27 @@ public class ModifierReservation {
         }
     }
 
+    private void loadListeReservationView() {
+        try {
+            // Load the ListeReservation.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listeReservation.fxml"));
+            Parent root = loader.load();
 
+            // Create a new scene
+            Scene scene = new Scene(root);
 
+            // Get the current stage (window)
+            Stage stage = (Stage) Retour.getScene().getWindow();
+
+            // Set the scene on the stage
+            stage.setScene(scene);
+
+            // Show the stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception (e.g., show an error message)
+        }
+    }
 
 }

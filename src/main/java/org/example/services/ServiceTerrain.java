@@ -1,9 +1,16 @@
 package org.example.services;
 
 import com.mysql.cj.exceptions.ClosedOnExpiredPasswordException;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.example.models.Terrain;
 import org.example.utils.MyDataBase;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +18,9 @@ import java.util.List;
 public class ServiceTerrain implements IService<Terrain> {
     private Connection connection;
     public ServiceTerrain() {connection = MyDataBase.getInstance().getConnection();}
+    @FXML
+    private ImageView Retour;
+
 
     @Override
     public void ajouter(Terrain terrain) throws SQLException {
@@ -56,8 +66,7 @@ public class ServiceTerrain implements IService<Terrain> {
     }
     public int afficherTerrain(String nomTerrain) throws SQLException {
         int id = 0;
-        String sql = "SELECT " +
-                " FROM terrain WHERE nom_terrain = ?";
+        String sql = "SELECT id FROM terrain WHERE nom_terrain = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, nomTerrain);
@@ -71,8 +80,6 @@ public class ServiceTerrain implements IService<Terrain> {
 
         return id;
     }
-
-
 
 
     @Override
@@ -105,4 +112,7 @@ public class ServiceTerrain implements IService<Terrain> {
 
         return terrains;
     }
+
+
+
 }

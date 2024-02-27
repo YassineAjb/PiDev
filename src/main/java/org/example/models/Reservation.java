@@ -8,8 +8,6 @@ public class Reservation {
     private String note;
     private String emplacement;
 
-    // Constructors, getters, setters, and other methods
-
     public Reservation() {
 
     }

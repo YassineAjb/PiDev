@@ -49,6 +49,11 @@
                         <Text layoutX="150.0" layoutY="419.0" text="Fermeture" />
                         <TimePicker fx:id="fermeture" layoutX="148.0" layoutY="430.0" />
                         <DateRangePicker fx:id="datedispo" layoutX="16.0" layoutY="370.0" />
+                        <ImageView fx:id="Retour" fitHeight="29.0" fitWidth="37.0" layoutX="700.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Retour.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                   
