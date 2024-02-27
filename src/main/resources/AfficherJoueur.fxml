@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.dlsc.gemsfx.daterange.DateRangePicker?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -205,6 +206,87 @@
                   <Button layoutX="319.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#modifierMouseClicked" prefHeight="85.0" prefWidth="292.0" text="Modification" />
                   <Button layoutX="623.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#supprimerMouseClicked" prefHeight="85.0" prefWidth="292.0" text="Suppression" />
                   <Button layoutX="928.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#afficherMouseClicked" prefHeight="85.0" prefWidth="292.0" text="Affichage" />
+                  <AnchorPane layoutX="-14.0" layoutY="96.0" minHeight="0.0" minWidth="0.0" prefHeight="978.0" prefWidth="1920.0">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="22.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="971.0" prefWidth="1156.0">
+                           <children>
+                              <AnchorPane layoutX="17.0" layoutY="348.0" prefHeight="290.0" prefWidth="984.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" AnchorPane.bottomAnchor="333.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="348.0">
+                                 <styleClass>
+                                    <String fx:value="radius" />
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shodow" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="758.0" layoutY="22.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css">
+                                       <styleClass>
+                                          <String fx:value="shodow" />
+                                          <String fx:value="white-bg" />
+                                       </styleClass>
+                                       <children>
+                                          <ImageView fx:id="importedImage1" fitHeight="200.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="importerJoueur1" layoutX="807.0" layoutY="237.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="btn" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Importer" />
+                                    <Label layoutX="357.0" layoutY="100.0" text="Salaire" />
+                                    <TextField fx:id="SalaireTF" layoutX="409.0" layoutY="96.0" prefHeight="25.0" prefWidth="221.0" />
+                                    <TextField fx:id="IdTF1" layoutX="83.0" layoutY="44.0" prefHeight="25.0" prefWidth="221.0" visible="false" />
+                                    <Label layoutX="47.0" layoutY="48.0" text="id" visible="false" />
+                                    <TextField fx:id="imageTF1" layoutX="385.0" layoutY="57.0" prefHeight="26.0" prefWidth="222.0" visible="false" />
+                                    <DateRangePicker layoutX="98.0" layoutY="132.0" />
+                                    <Label layoutX="44.0" layoutY="136.0" text="Date" />
+                                    <ComboBox layoutX="444.0" layoutY="147.0" prefWidth="222.0" />
+                                    <Label layoutX="361.0" layoutY="154.0" text="Employe_id" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="398.4" prefHeight="318.0" prefWidth="448.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" AnchorPane.leftAnchor="398.0">
+                                 <styleClass>
+                                    <String fx:value="radius" />
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shodow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <Button fx:id="modifierJoueur1" layoutX="1030.0" layoutY="548.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="btn" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Modifier" />
+                              <Button fx:id="supprimerJoueur1" layoutX="1030.0" layoutY="421.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="btn" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Supprimer" />
+                              <Button fx:id="ajouterJoueur1" layoutX="1030.0" layoutY="489.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="102.0" text="Ajouter" />
+                              <ScrollPane prefHeight="318.0" prefWidth="458.0" styleClass="transparent" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" AnchorPane.bottomAnchor="653.0" AnchorPane.leftAnchor="397.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="448.0">
+                                       <children>
+                                          <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="79.0" prefWidth="448.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="79.0" prefWidth="139.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Date_debut" textAlignment="CENTER" wrapText="true">
+                                                   <styleClass>
+                                                      <String fx:value="shodow" />
+                                                      <String fx:value="white-bg" />
+                                                      <String fx:value="btn" />
+                                                   </styleClass>
+                                                </Label>
+                                                <Label alignment="CENTER" layoutX="126.0" layoutY="10.0" prefHeight="79.0" prefWidth="190.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Date_fin" textAlignment="CENTER">
+                                                   <styleClass>
+                                                      <String fx:value="shodow" />
+                                                      <String fx:value="white-bg" />
+                                                      <String fx:value="btn" />
+                                                   </styleClass>
+                                                </Label>
+                                                <Label alignment="CENTER" layoutX="242.0" layoutY="10.0" prefHeight="79.0" prefWidth="117.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Salaire" textAlignment="CENTER">
+                                                   <styleClass>
+                                                      <String fx:value="shodow" />
+                                                      <String fx:value="white-bg" />
+                                                      <String fx:value="btn" />
+                                                   </styleClass>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="-62.3071174621582" startX="-100.0" />
+                                          <ListView fx:id="listContrat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="450.0" />
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                </children></AnchorPane>
             <AnchorPane fx:id="interfaceSuppression" prefHeight="907.0" prefWidth="1357.0">
                <children>
@@ -250,7 +332,7 @@
                                     <CheckBox fx:id="GaucheTF" layoutX="101.0" layoutY="189.0" mnemonicParsing="false" text="Gauche" />
                                     <CheckBox fx:id="DroiteTF" layoutX="194.0" layoutY="189.0" mnemonicParsing="false" text="Droite" />
                                     <ComboBox fx:id="PositionTF" layoutX="119.0" layoutY="76.0" prefWidth="222.0" visibleRowCount="11" />
-                                    <TextField fx:id="imageTF" layoutX="385.0" layoutY="57.0" prefHeight="26.0" prefWidth="222.0" />
+                                    <TextField fx:id="imageTF" layoutX="385.0" layoutY="57.0" prefHeight="26.0" prefWidth="222.0" visible="false" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="17.0" prefHeight="317.0" prefWidth="1171.0" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" AnchorPane.leftAnchor="17.0">
@@ -335,9 +417,9 @@
                                     </ScrollPane>
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="modifierJoueur" layoutX="1030.0" layoutY="548.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="btn" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Modifier" />
+                              <Button fx:id="modifierJoueur" layoutX="1030.0" layoutY="548.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="34.0" prefWidth="102.0" styleClass="btn" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Modifier" />
                               <Button fx:id="supprimerJoueur" layoutX="1030.0" layoutY="421.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="btn" stylesheets="@../../../../swiftMinder2.0/src/main/resources/Store.css" text="Supprimer" />
-                              <Button fx:id="ajouterJoueur" layoutX="1030.0" layoutY="489.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="102.0" text="Ajouter" />
+                              <Button fx:id="ajouterJoueur" layoutX="1030.0" layoutY="489.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="36.0" prefWidth="102.0" text="Ajouter" />
                            </children>
                         </AnchorPane>
                      </children>

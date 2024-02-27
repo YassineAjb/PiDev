@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -19,8 +20,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.example.models.Contrat;
+import org.example.models.ContratCell;
 import org.example.models.Joueur;
 import org.example.models.JoueurCell;
+import org.example.services.ServiceContrat;
 import org.example.services.ServiceJoueur;
 
 import java.io.File;
@@ -31,6 +35,7 @@ import java.util.List;
 
 public class AfficherJoueur {
     private final ServiceJoueur serviceJoueur= new ServiceJoueur();
+    private final ServiceContrat serviceContrat= new ServiceContrat();
     @FXML
     private GridPane gridJoueurs;
     @FXML
@@ -104,8 +109,9 @@ public class AfficherJoueur {
     private CheckBox GaucheTF;
     @FXML
     private TextField imageTF;
-
     private String PiedfortTF;
+    @FXML
+    private ListView<Contrat> listContrat;
     public void ajouterJoueur(ActionEvent actionEvent) {
 
         try {
@@ -120,6 +126,41 @@ public class AfficherJoueur {
     }
 
     public void initialize() {
+
+        AgeTF.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String input = event.getCharacter();
+            if (!input.matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        HauteurTF.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String input = event.getCharacter();
+            if (!input.matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        PoidsTF.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String input = event.getCharacter();
+            if (!input.matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        NomTF.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String input = event.getCharacter();
+            if (!input.matches("[a-zA-Z ]")) {
+                event.consume();
+            }
+        });
+
+        PrenomTF.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String input = event.getCharacter();
+            if (!input.matches("[a-zA-Z ]")) {
+                event.consume();
+            }
+        });
         ObservableList<String> positionOptions = FXCollections.observableArrayList("GK", "DC","AL","AD ","MD","MC","MO","AD","AG","AP","SA");
         PositionTF.setItems(positionOptions);
 
@@ -137,7 +178,7 @@ public class AfficherJoueur {
         });
         try {
             try {
-                recupererList();
+                recupererListJoueur();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -208,9 +249,19 @@ public class AfficherJoueur {
 
             ajouterJoueur.setOnAction(e ->{
             try {
-                serviceJoueur.ajouter(new Joueur(PositionTF.getValue(),Integer.parseInt(HauteurTF.getText()),Integer.parseInt(PoidsTF.getText()),PiedfortTF,NomTF.getText(),PrenomTF.getText(),Integer.parseInt(AgeTF.getText()),filePath));
+                if (NomTF.getText().isEmpty() || PrenomTF.getText().isEmpty() || AgeTF.getText().isEmpty() || PositionTF.getValue() == null || HauteurTF.getText().isEmpty() || PoidsTF.getText().isEmpty() || (!DroiteTF.isSelected() && !GaucheTF.isSelected())) {
+                    // Display a warning or error message
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning");
+                    alert.setHeaderText("Empty Fields");
+                    alert.setContentText("Please fill in all the required fields.");
+                    alert.showAndWait();
+                }else{
+                    serviceJoueur.ajouter(new Joueur(PositionTF.getValue(),Integer.parseInt(HauteurTF.getText()),Integer.parseInt(PoidsTF.getText()),PiedfortTF,NomTF.getText(),PrenomTF.getText(),Integer.parseInt(AgeTF.getText()),filePath));
 
-                recupererList();
+                }
+
+                recupererListJoueur();
             } catch (SQLException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -221,9 +272,17 @@ public class AfficherJoueur {
 
             modifierJoueur.setOnAction(e ->{
                 try{
-
-                    serviceJoueur.modifier(new Joueur(Integer.parseInt(IdTF.getText()),PositionTF.getValue(),Integer.parseInt(HauteurTF.getText()),Integer.parseInt(PoidsTF.getText()),PiedfortTF,NomTF.getText(),PrenomTF.getText(),Integer.parseInt(AgeTF.getText()),filePath));
-                    recupererList();
+                    if (NomTF.getText().isEmpty() || PrenomTF.getText().isEmpty() || AgeTF.getText().isEmpty() || PositionTF.getValue() == null || HauteurTF.getText().isEmpty() || PoidsTF.getText().isEmpty() || (!DroiteTF.isSelected() && !GaucheTF.isSelected())) {
+                        // Display a warning or error message
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Warning");
+                        alert.setHeaderText("Empty Fields");
+                        alert.setContentText("Please fill in all the required fields.");
+                        alert.showAndWait();
+                    }else {
+                        serviceJoueur.modifier(new Joueur(Integer.parseInt(IdTF.getText()), PositionTF.getValue(), Integer.parseInt(HauteurTF.getText()), Integer.parseInt(PoidsTF.getText()), PiedfortTF, NomTF.getText(), PrenomTF.getText(), Integer.parseInt(AgeTF.getText()), filePath));
+                    }
+                    recupererListJoueur();
                     System.out.println("modifier");
                 }catch (SQLException ex){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -236,7 +295,7 @@ public class AfficherJoueur {
             supprimerJoueur.setOnAction(e ->{
                 try {
                     serviceJoueur.supprimer(Integer.parseInt(IdTF.getText()));
-                    recupererList();
+                    recupererListJoueur();
                 }catch (SQLException ex){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -292,7 +351,7 @@ public class AfficherJoueur {
 
     }
 
-    private void recupererList() throws SQLException {
+    private void recupererListJoueur() throws SQLException {
         List<Joueur> joueurs = serviceJoueur.afficher(); // Assuming serviceJoueur is your service class for managing Joueur
         ObservableList<Joueur> observableArrayList = FXCollections.observableArrayList(joueurs);
 
@@ -304,6 +363,20 @@ public class AfficherJoueur {
         });
 
         listJoueur.setItems(observableArrayList);
+    }
+
+    private void recupererListContrat() throws SQLException {
+        List<Contrat> contrats = serviceContrat.afficher(); // Assuming serviceContrat is your service class for managing Contrat
+        ObservableList<Contrat> observableArrayList = FXCollections.observableArrayList(contrats);
+
+        listContrat.setCellFactory(new Callback<ListView<Contrat>, ListCell<Contrat>>() {
+            @Override
+            public ListCell<Contrat> call(ListView<Contrat> listView) {
+                return new ContratCell();
+            }
+        });
+
+        listContrat.setItems(observableArrayList);
     }
 
     public void naviguezVersAjouter(ActionEvent actionEvent) {
