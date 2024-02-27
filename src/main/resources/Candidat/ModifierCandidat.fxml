@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Admin.Candidat.ModifierCandidatController">
+   <children>
+      <TextField fx:id="nomTFCM" layoutX="99.0" layoutY="147.0" promptText="Nom" />
+      <TextField fx:id="prenomTFCM" layoutX="99.0" layoutY="193.0" promptText="Prénom" />
+      <Button layoutX="423.0" layoutY="309.0" mnemonicParsing="false" onAction="#modifierCandidat" text="Modifier" />
+      <Button layoutX="524.0" layoutY="309.0" mnemonicParsing="false" onAction="#naviguezMCVersAffichage" text="Afficher" />
+      <TextField fx:id="idTFCM" layoutX="99.0" layoutY="41.0" promptText="ID Candidat a modifier" />
+      <TextField fx:id="ageTFCM" layoutX="99.0" layoutY="239.0" prefHeight="31.0" prefWidth="53.0" promptText="Age" />
+   </children>
+</AnchorPane>

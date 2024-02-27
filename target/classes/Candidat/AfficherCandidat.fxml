@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Admin.Candidat.AfficherCandidatController">
+   <children>
+      <TableView fx:id="tableViewC" layoutX="54.0" layoutY="72.0" prefHeight="274.0" prefWidth="482.0">
+        <columns>
+          <TableColumn fx:id="nomColC" prefWidth="161.0" text="Nom" />
+          <TableColumn fx:id="prenomColC" prefWidth="139.0" text="Prénom" />
+            <TableColumn fx:id="ageColC" prefWidth="181.0" text="Age" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

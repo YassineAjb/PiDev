@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox prefHeight="92.0" prefWidth="980.0" spacing="50.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ELectionItemController">
+   <children>
+      <ImageView fx:id="imgElection" fitHeight="121.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/20220727_130329.jpg" />
+         </image>
+         <HBox.margin>
+            <Insets right="50.0" />
+         </HBox.margin>
+      </ImageView>
+      <Label fx:id="nomElection" text="nomElection">
+         <HBox.margin>
+            <Insets right="50.0" top="25.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="dateElection" text="dateElection">
+         <HBox.margin>
+            <Insets right="50.0" top="25.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="posteElection" text="posteElection">
+         <HBox.margin>
+            <Insets right="50.0" top="25.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="periodeElection" text="periodeElection">
+         <HBox.margin>
+            <Insets right="50.0" top="25.0" />
+         </HBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#itemUpdate">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-bouton-modifier-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" top="18.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#itemSupprimer">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-supprimer-pour-toujours-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" top="18.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <HBox.margin>
+            <Insets right="50.0" />
+         </HBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="40.0" right="20.0" top="10.0" />
+   </padding>
+</HBox>

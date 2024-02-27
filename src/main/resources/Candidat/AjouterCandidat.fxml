@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane focusTraversable="true" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Admin.Candidat.AjouterCandidatController">
+   <children>
+      <TextField fx:id="nomTFAC" layoutX="99.0" layoutY="61.0" promptText="Nom" />
+      <Button layoutX="453.0" layoutY="309.0" mnemonicParsing="false" onAction="#ajouterCandidat" text="Ajouter" />
+      <Button layoutX="524.0" layoutY="309.0" mnemonicParsing="false" onAction="#naviguezACVersAffichage" text="Afficher" />
+      <TextField fx:id="prenomTFAC" layoutX="99.0" layoutY="139.0" promptText="Prénom" />
+      <TextField fx:id="ageTFAC" layoutX="99.0" layoutY="219.0" prefHeight="31.0" prefWidth="45.0" promptText="Age" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
