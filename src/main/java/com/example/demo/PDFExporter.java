@@ -23,7 +23,7 @@ public class PDFExporter {
             float rowHeight = 20; // Adjust as needed
             float tableHeight = (float) (tableView.getItems().size() * rowHeight);
 
-            float startX = 50; // Adjust as needed
+            float startX = 1; // Adjust as needed
             float startY = (float) (page.getMediaBox().getHeight() - 50); // Adjust as needed
 
             contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
@@ -32,7 +32,7 @@ public class PDFExporter {
             contentStream.showText("Table Content");
             contentStream.endText();
 
-            startX = 50; // Reset X position
+            startX = 1; // Reset X position
             startY -= 20; // Move up for table content
 
             for (TableColumn<User, ?> column : tableView.getColumns()) {
@@ -49,7 +49,7 @@ public class PDFExporter {
 
             ObservableList<User> items = tableView.getItems();
             for (User user : items) {
-                startX = 50; // Reset X position
+                startX = 1; // Reset X position
                 for (TableColumn<User, ?> column : tableView.getColumns()) {
                     String cellData = ""; // Assurez-vous d'adapter cela à votre modèle User
                     if (column.getCellData(user) != null) {

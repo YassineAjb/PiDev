@@ -38,15 +38,16 @@ public class SignUp implements Initializable {
     private DatePicker dateCreation;
     @javafx.fxml.FXML
     private ComboBox roleCombo;
-    @javafx.fxml.FXML
-    private TextField CIN;
     @FXML
     private ImageView imageClosewindow;
     @FXML
     private Label novalid2;
+    @FXML
+    private TextField NumTel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        roleCombo.getItems().addAll("Journaliste","membre","admin");
+        roleCombo.getItems().addAll("Journaliste","Membre","MembrePlus","Moderateur");
         roleCombo.setValue("");
         ConfirmPassword.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.equals(Password.getText())) {
@@ -79,7 +80,7 @@ public class SignUp implements Initializable {
             }
             return null;
         });
-        CIN.setTextFormatter(formatter);
+        NumTel.setTextFormatter(formatter);
 
     }
 
@@ -100,15 +101,9 @@ public class SignUp implements Initializable {
             String role = (String) roleCombo.getValue();
             String email = UserEmail.getText();
             String password = Password.getText();
-            int cin;
-            try {
-                cin = Integer.parseInt(CIN.getText());
-            } catch (NumberFormatException e) {
-                // Gérer le cas où le texte ne peut pas être converti en entier
-                System.out.println("Le champ CIN doit contenir un entier valide");
-                return; // Sortir de la méthode si la conversion échoue
-            }
-            if (role == null || role.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            String numtel=NumTel.getText();
+
+            if (role == null || role.isEmpty() || email.isEmpty() || password.isEmpty()|| numtel.isEmpty()) {
                 noValid.setText("All fields are required");
                 return;
             }
@@ -122,7 +117,7 @@ public class SignUp implements Initializable {
             }
             String encryptedPassword = Encryptor.encryptPassword(password);
             Date dateCreation = new Date();
-            User user = new User(email, encryptedPassword, dateCreation, role, cin);
+            User user = new User(email, encryptedPassword, dateCreation, role, numtel);
             if(cr.isUserExists(user.getEmail())) {
                 System.out.println("l utilistaeur existe deja");
                 novalid2.setText("You hava already account!");

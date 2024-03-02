@@ -12,7 +12,9 @@ import javafx.scene.image.ImageView;
 import model.User;
 import services.Crud_user;
 import utils.Encryptor;
+import utils.Session;
 
+import java.util.Locale;
 import java.util.Scanner;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -68,9 +70,18 @@ public class Login {
                 user_email.setText("");
                 user_password.setText("");
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("Crud.fxml"));
-                    button_Sign_In.getScene().setRoot(root);
+                    Session.Start_session(loggedInUser);
+                        if(loggedInUser.getRole().equals("admine")){
 
+                        Parent root = FXMLLoader.load(getClass().getResource("Crud.fxml"));
+
+                        button_Sign_In.getScene().setRoot(root);
+
+                    }else{
+                        Parent root = FXMLLoader.load(getClass().getResource("reclamationFront.fxml"));
+
+                        button_Sign_In.getScene().setRoot(root);
+                    }
                 } catch (IOException e) {
                     System.err.println(e.getMessage());
                 }

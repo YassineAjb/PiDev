@@ -19,7 +19,7 @@ public class Encryptor {
 
     public static String generateCode(int length) {
         // Define the character set for alphanumeric characters
-        String charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String charSet = "abcdefghijklmnopqrstuvwxyz0123456789";
 
         // Create a StringBuilder to store the generated code
         StringBuilder code = new StringBuilder();

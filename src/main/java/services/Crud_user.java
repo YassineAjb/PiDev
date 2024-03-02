@@ -19,22 +19,37 @@ public class Crud_user {
       connection= DB.getInstance().getConnection();
 
     }
-    public void createUser(User user) {
+    /*public void createUser(User user) {
         try {
-            String sql = "INSERT INTO user (`email`, `mot_de_passe`, `date_creation`,`role`,`cin`) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO user (`email`, `mot_de_passe`, `date_creation`,`role`,`NumTel`) VALUES (?,?,?,?,?)";
             PreparedStatement st = this.connection.prepareStatement(sql);
             st.setString(1, user.getEmail());
             st.setString(2, user.getMot_de_passe());
             st.setDate(3,  new java.sql.Date(user.getDate_creation().getTime()));
             st.setString(4, user.getRole());
-            st.setInt(5, user.getCin());
+            st.setString(5, user.getNumTel());
             st.executeUpdate();
         }catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
 
+    }*/
+    public void createUser(User user) {
+        try {
+            String sql = "INSERT INTO user (`email`, `mot_de_passe`, `date_creation`,`role`,`NumTel`) VALUES (?,?,?,?,?)";
+            PreparedStatement st = this.connection.prepareStatement(sql);
+            st.setString(1, user.getEmail());
+            st.setString(2, user.getMot_de_passe());
+            st.setDate(3,  new java.sql.Date(user.getDate_creation().getTime()));
+            st.setString(4, user.getRole());
+            st.setString(5, user.getNumTel()); // Ensure NumTel is not null
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
     public void deleteUser(int id)  {
    try {
     String sql = "delete from user where id_user = ?";
@@ -49,23 +64,48 @@ public class Crud_user {
 }}
     public boolean modifier(User usr)  {
         try {
-            String sql = "Update user set email = ?, mot_de_passe= ? , role= ?,cin= ? where id_user = ?";
+            String sql = "Update user set email = ?, mot_de_passe= ? , role= ?,NumTel= ? where id_user = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, usr.getEmail());
             preparedStatement.setString(2, usr.getMot_de_passe());
             preparedStatement.setString(3, usr.getRole());
-            preparedStatement.setInt(4,usr.getCin());
+            preparedStatement.setString(4,usr.getNumTel());
             preparedStatement.setInt(5,usr.getId());
 
 
             return  preparedStatement.executeUpdate()!=0;
+
         }catch (SQLException E)
         { System.out.println(E.getMessage());
     }
     return  false;
     }
     ObservableList<User> users = FXCollections.observableArrayList();
+    public ObservableList<User> afficher() {
+        ObservableList<User> users = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT * FROM user";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                User p = new User();
+                p.setId(rs.getInt("id_user"));
+                p.setEmail(rs.getString("email"));
+                p.setMot_de_passe(rs.getString("mot_de_passe"));
+                p.setDate_creation(rs.getDate("date_creation"));
+                p.setRole(rs.getString("role"));
+                p.setNumTel( rs.getString("NumTel"));
 
+                users.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return users;
+    }
+
+
+    /*
     public ObservableList<User> afficher() {
         ObservableList<User> users=FXCollections.observableArrayList();
          try {
@@ -79,7 +119,7 @@ public class Crud_user {
                 p.setMot_de_passe(rs.getString(3));
                 p.setDate_creation(rs.getDate(4));
                 p.setRole(rs.getString(5));
-                p.setCin(rs.getInt(6));
+                p.setNumTel(rs.getString(6));
                 users.add(p);
             }
         } catch (SQLException e) {
@@ -87,7 +127,7 @@ public class Crud_user {
         }
     return users;
 
-    }
+    }*/
     public User Login(String email) {
        User user=new User();
         try {
@@ -100,12 +140,13 @@ public class Crud_user {
 
             while (rs.next()) {
 
-                user.setId(rs.getInt(1));
-                user.setEmail(rs.getString(2));
-                user.setMot_de_passe(rs.getString(3));
-                user.setDate_creation(rs.getDate(4));
-                user.setRole(rs.getString(5));
-                user.setCin(rs.getInt(6));
+                user.setId(rs.getInt("id_user"));
+                user.setEmail(rs.getString("email"));
+                user.setMot_de_passe(rs.getString("mot_de_passe"));
+                user.setDate_creation(rs.getDate("date_creation"));
+                user.setRole(rs.getString("role"));
+                user.setNumTel(rs.getString("NumTel"));
+
                 return user;
 
             }
@@ -132,6 +173,31 @@ public class Crud_user {
             return false;
         }
     }
+    public User getUserByNumTell(String Numtell) {
+        String sql = "SELECT * FROM user WHERE NumTel = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, Numtell);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id_user"));
+                user.setEmail(rs.getString("email"));
+                user.setMot_de_passe(rs.getString("mot_de_passe"));
+                user.setDate_creation(rs.getDate("date_creation"));
+                user.setRole(rs.getString("role"));
+                user.setNumTel( rs.getString("NumTel"));
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 
 
 }

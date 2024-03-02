@@ -50,15 +50,11 @@ public class AfficherListeUser implements Initializable {
     @FXML
     private TableColumn date_creationcol;
     @FXML
-    private TableColumn cincol;
-    @FXML
     private TableColumn emailcol;
     @FXML
     private Button deleteButton;
     @FXML
     private Button saveButton;
-    @FXML
-    private TextField usercin;
     @FXML
     private TextField userrole;
     @FXML
@@ -75,17 +71,14 @@ public class AfficherListeUser implements Initializable {
     private Button modiferbutton;
     private boolean isAddingMode = true;
     private User selectedUserToUpdate;
-    @FXML
-    private ImageView downloadPdf;
-    @FXML
-    private TextField Search;
-    private FilteredList<User> filteredList;
-    private ObservableList<User> userList = FXCollections.observableArrayList();
+
     @FXML
     private ImageView Redirect;
     private Scene previousScene;
-
-
+    @FXML
+    private TableColumn NumTelCol;
+    @FXML
+    private TextField userNumTel;
 
 
     @Override
@@ -94,7 +87,7 @@ public class AfficherListeUser implements Initializable {
         roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
         mot_de_passe_col.setCellValueFactory(new PropertyValueFactory<>("mot_de_passe"));
         date_creationcol.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
-        cincol.setCellValueFactory(new PropertyValueFactory<>("cin"));
+        NumTelCol.setCellValueFactory(new PropertyValueFactory<>("NumTel"));
         emailcol.setCellValueFactory(new PropertyValueFactory<>("email"));
         //  tableuser.getColumns().addAll(roleCol,mot_de_passe_col,date_creationcol,cincol,emailcol);
         UserEmail.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -112,15 +105,9 @@ public class AfficherListeUser implements Initializable {
             }
             return null;
         });
-        usercin.setTextFormatter(formatter);
+        userNumTel.setTextFormatter(formatter);
         refresh();
         // Créer une FilteredList à partir de la liste observable userList
-        filteredList = new FilteredList<>(userList, p -> true);
-
-        // Attacher un écouteur d'événements au champ de recherche pour détecter les changements de texte
-        Search.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterUsers(newValue);
-        });
 
 
     }
@@ -151,19 +138,14 @@ public class AfficherListeUser implements Initializable {
         String password = Password.getText();
         String role = userrole.getText();
         Date dateCreation = new Date();
+        String NumTel=userNumTel.getText();
         String encryptedPassword = Encryptor.encryptPassword(password);
-        int cin;
-        try {
-            cin = Integer.parseInt(usercin.getText());
-        } catch (NumberFormatException e) {
-            System.out.println("Le champ CIN doit contenir un entier valide");
-            return;
-        }
+
         if (role == null || role.isEmpty() || email.isEmpty() || password.isEmpty()) {
             novalid2.setText("All fields are required");
             return;
         }
-        User user = new User(email, encryptedPassword, dateCreation, role, cin);
+        User user = new User(email, encryptedPassword, dateCreation, role, NumTel);
         if (isAddingMode) {
             // Mode ajout
             us.createUser(user);
@@ -201,45 +183,11 @@ public class AfficherListeUser implements Initializable {
         }
 
     }
-    @FXML
-    public void exportToPdf(MouseEvent event) {
-        PrinterJob printerJob = PrinterJob.createPrinterJob();
-        if (printerJob != null) {
-            if (printerJob.showPrintDialog(tableuser.getScene().getWindow())) {
-                PageLayout pageLayout = printerJob.getPrinter().getDefaultPageLayout();
-                double scaleX = pageLayout.getPrintableWidth() / tableuser.getBoundsInParent().getWidth();
-                double scaleY = pageLayout.getPrintableHeight() / tableuser.getBoundsInParent().getHeight();
-                double scale = Math.min(scaleX, scaleY);
-                Scale printScale = new Scale(scale, scale);
-                tableuser.getTransforms().add(printScale);
-                boolean success = printerJob.printPage(tableuser);
-                if (success) {
-                    showSuccessMessage("Le PDF a été téléchargé avec succès !");
-                    printerJob.endJob();
-                }else{  showErrorMessage("Une erreur s'est produite lors du téléchargement du PDF.");}
-
-                tableuser.getTransforms().remove(printScale); // Réinitialiser la transformation après l'impression
-            }
-        }
-    }
 
 
 
-    private void showSuccessMessage(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Succès");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
-    private void showErrorMessage(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
     private void filterUsers(String keyword) {
         if (keyword == null || keyword.isEmpty()) {
             refresh();

@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import atlantafx.base.theme.NordDark;
+import atlantafx.base.theme.NordLight;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,8 +30,6 @@ import java.util.ResourceBundle;
 
 public class ModifyUser implements Initializable {
     @javafx.fxml.FXML
-    private TextField usercin;
-    @javafx.fxml.FXML
     private TextField userrole;
     @javafx.fxml.FXML
     private TextField UserEmail;
@@ -37,10 +38,12 @@ public class ModifyUser implements Initializable {
     @javafx.fxml.FXML
     private ImageView returnButton;
     private User user;
+    @javafx.fxml.FXML
+    private TextField userNumTel;
 
     public void setUser(User user) {
         this.user = user;
-        usercin.setText(String.valueOf(user.getCin()));
+        userNumTel.setText(String.valueOf(user.getNumTel()));
         userrole.setText(user.getRole());
         UserEmail.setText(user.getEmail());
 
@@ -51,6 +54,7 @@ public class ModifyUser implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
     }
 
@@ -79,10 +83,11 @@ public class ModifyUser implements Initializable {
         String email = UserEmail.getText();
         String password = Password.getText();
         String role = userrole.getText();
+        String numtel=userNumTel.getText();
         String encryptedPassword = Encryptor.encryptPassword(password);
         int cin;
         try {
-            cin = Integer.parseInt(usercin.getText());
+            cin = Integer.parseInt(userNumTel.getText());
         } catch (NumberFormatException e) {
             System.out.println("Le champ CIN doit contenir un entier valide");
             return;
@@ -90,7 +95,7 @@ public class ModifyUser implements Initializable {
         if (role == null || role.isEmpty() || email.isEmpty() || password.isEmpty()) {
 
         }
-        user.setCin(cin);
+        user.setNumTel(numtel);
         user.setEmail(email);
         user.setRole(role);
         user.setMot_de_passe(encryptedPassword);

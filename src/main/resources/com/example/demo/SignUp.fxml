@@ -42,7 +42,7 @@
             <Label fx:id="noValid1" disable="true" layoutX="131.0" layoutY="291.0" prefHeight="18.0" prefWidth="205.0" style="-fx-background-radius: 50;" textFill="#fc2020" />
             <DatePicker fx:id="dateCreation" layoutX="126.0" layoutY="314.0" prefHeight="30.0" prefWidth="217.0" promptText="Date of creation" style="-fx-border-radius: #0598ff;" styleClass="TextField" stylesheets="@../../../style.css" />
             <ComboBox fx:id="roleCombo" layoutX="138.0" layoutY="459.0" prefHeight="26.0" prefWidth="203.0" promptText="role" style="-fx-background-radius: 60;" />
-            <TextField fx:id="CIN" layoutX="127.0" layoutY="381.0" prefHeight="30.0" prefWidth="217.0" promptText="CIN" style="-fx-border-radius: #0598ff;" styleClass="TextField" stylesheets="@../../../style.css" />
+            <TextField fx:id="NumTel" layoutX="127.0" layoutY="381.0" prefHeight="30.0" prefWidth="217.0" promptText="NumTel" style="-fx-border-radius: #0598ff;" styleClass="TextField" stylesheets="@../../../style.css" />
             <Label layoutX="165.0" layoutY="74.0" text="Have Already account" />
             <ImageView fx:id="imageClosewindow" fitHeight="22.0" fitWidth="25.0" layoutX="479.0" layoutY="21.0" onMouseClicked="#CloseWindow_OnClick" pickOnBounds="true" preserveRatio="true">
                <image>

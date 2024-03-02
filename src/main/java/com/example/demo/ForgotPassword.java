@@ -1,20 +1,21 @@
 package com.example.demo;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.User;
 import services.Crud_user;
 import utils.EmailSender;
 import utils.Encryptor;
+import utils.SMSsender;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,59 +23,98 @@ import java.util.ResourceBundle;
 
 public class ForgotPassword implements Initializable {
     @javafx.fxml.FXML
-    private TextField code;
-    @javafx.fxml.FXML
     private TextField EmailForgotPassword;
     @javafx.fxml.FXML
     private Button buttonForgotPassword;
     String GeneratedCode = "";
+    String generatedCode ;
+
 
     private int process;
     private Crud_user crudUser = new Crud_user();
     @javafx.fxml.FXML
     private ImageView returnLogin;
+    @javafx.fxml.FXML
+    private RadioButton SmsType;
+    @javafx.fxml.FXML
+    private RadioButton EmailType;
+    @javafx.fxml.FXML
+    private TextField InputCode;
+    User user;
+    @FXML
+    private ToggleGroup radioChoix;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        code.setDisable(true);
+        InputCode.setDisable(true);
         process = 1;
 
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void ForgotPasswordOn_Click(ActionEvent event) {
         if (process == 1) {
-            String email = EmailForgotPassword.getText();
-            if (crudUser.isUserExists(email)) {
-                GeneratedCode = Encryptor.generateCode(6);
-                EmailSender emailSender = new EmailSender();
-                emailSender.sendEmail(email, "RESET PASSWORD", "Votre code est : " + GeneratedCode + "");
+            if (EmailType.isSelected()) {
+                String email = EmailForgotPassword.getText();
+                user = crudUser.Login(email);
+                System.out.println("USER FROM FORGET PASSWORD" + user);
+                if (user != null) {
+                    GeneratedCode = Encryptor.generateCode(6);
+                    EmailSender emailSender = new EmailSender();
+                    emailSender.sendEmail(email, "RESET PASSWORD", "Votre code est : " + GeneratedCode + "");
 
 
-                code.setDisable(false);
-                EmailForgotPassword.setDisable(true);
-                process = 2;
+                    InputCode.setDisable(false);
+                    EmailForgotPassword.setDisable(true);
+                    process = 2;
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Email Not Valid");
+                    alert.setHeaderText("NOT VALID EMAIL ");
+                    alert.setContentText("Account NON VALID");
+                    alert.showAndWait();
+                }
 
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Email Not Valid");
-                alert.setHeaderText("NOT VALID EMAIL ");
-                alert.setContentText("Account NON VALID");
-                alert.showAndWait();
+                String numTell = EmailForgotPassword.getText();
+                System.out.println(numTell);
+                user = crudUser.getUserByNumTell(numTell);
+                if (user != null) {
+                    InputCode.setDisable(false);
+                    EmailForgotPassword.setDisable(true);
+                    process = 2;
+                    generatedCode = Encryptor.generateCode(5);
+                    System.out.println(generatedCode);
+                    SMSsender.Send("+216" + numTell, generatedCode);
+
+                }
             }
 
-        } else {
-            if (GeneratedCode.equals(code.getText())) {
-
-            } else {
+        }else {
+                 if (generatedCode.equals(InputCode.getText())) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ResetPassword.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    ResetPassword newPasswordController = loader.getController();
+                    // Passer l'objet User à la scène ResetPassword.fxml
+                    newPasswordController.setUser(user);
+                    // Charger la scène dans la fenêtre actuelle
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+             } else {
+                // Afficher une alerte si le code n'est pas valide
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("CODE Not Valid");
-                alert.setHeaderText("NOT VALID CODE ");
+                alert.setHeaderText("NOT VALID CODE");
                 alert.setContentText("NOT VALID CODE");
                 alert.showAndWait();
-            }
-        }
-
+            }}
     }
 
     @javafx.fxml.FXML

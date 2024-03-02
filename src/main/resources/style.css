@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .parent{
     -fx-background-color: transparent;
 }
@@ -141,7 +141,6 @@
     -fx-font-size: "Arial";
 }
 
-=======
 .button
 {
 -fx-background-color : #ffffff;
@@ -184,4 +183,25 @@
 .scroll-pane > .corner {
     -fx-background-color: black;
 }
->>>>>>> 156e5ad5f3e9e2785a62a22585f7fe60316b208c
+
+.halo-effect {
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 10, 0, 0, 0);
+}
+
+/* Style pour créer une bordure 3D */
+.three-d-border {
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-style: solid;
+    -fx-border-radius: 5px; /* Rayon de la bordure */
+}
+.anchor-pane-3d {
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-style: solid;
+    -fx-border-radius: 5px; /* Rayon de la bordure */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}.anchor-pane-foreground {
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+ }
+

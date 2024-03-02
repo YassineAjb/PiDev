@@ -8,26 +8,27 @@ public class User {
     private String mot_de_passe;
     private Date date_creation;
     private String role;
-    private int cin;
+
+    private String NumTel;
 
     public User() {
     }
 
-    public User(int id, String email, String mot_de_passe, Date date_creation, String role, int cin) {
+    public User(int id, String email, String mot_de_passe, Date date_creation, String role, String NumTel) {
         this.id = id;
         this.email = email;
         this.mot_de_passe = mot_de_passe;
         this.date_creation = date_creation;
         this.role = role;
-        this.cin = cin;
+        this.NumTel = NumTel;
     }
 
-    public User(String email, String mot_de_passe, Date date_creation, String role, int cin) {
+    public User(String email, String mot_de_passe, Date date_creation, String role,String NumTel) {
         this.email = email;
         this.mot_de_passe = mot_de_passe;
         this.date_creation = date_creation;
         this.role = role;
-        this.cin = cin;
+        this. NumTel = NumTel;
     }
 
     public int getId() {
@@ -70,12 +71,12 @@ public class User {
         this.role = role;
     }
 
-    public int getCin() {
-        return cin;
+    public String getNumTel() {
+        return NumTel;
     }
 
-    public void setCin(int cin) {
-        this.cin = cin;
+    public void setNumTel(String NumTel) {
+        this.NumTel = NumTel;
     }
 
     @Override
@@ -86,7 +87,7 @@ public class User {
                 ", mot_de_passe='" + mot_de_passe + '\'' +
                 ", date_creation=" + date_creation +
                 ", role='" + role + '\'' +
-                ", cin=" + cin +
+                ", NumTel=" + NumTel +
                 '}';
     }
 }

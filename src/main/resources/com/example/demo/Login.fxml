@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
@@ -19,10 +20,14 @@
             <TextField fx:id="user_email" layoutX="177.0" layoutY="236.0" prefHeight="36.0" prefWidth="230.0" promptText="Email" style="-fx-background-color: #ffffff; -fx-border-color: #0598ff;" styleClass="TextField" stylesheets="@../../../style.css" />
             <PasswordField fx:id="user_password" layoutX="177.0" layoutY="316.0" prefHeight="36.0" prefWidth="228.0" promptText="Password" style="-fx-border-color: #0598ff;" styleClass="TextField" stylesheets="@../../../style.css" />
             <TextField fx:id="passwordTextfield" editable="false" layoutX="75.0" layoutY="217.0" prefHeight="26.0" prefWidth="204.0" visible="false" />
-            <Button fx:id="button_Sign_In" layoutX="233.0" layoutY="428.0" mnemonicParsing="false" onAction="#Sign_In_OnClick" prefHeight="44.0" prefWidth="146.0" stylesheets="@CrudStyle.css" text="SIGN IN" textFill="#454c4d">
+            <Button fx:id="button_Sign_In" layoutX="233.0" layoutY="428.0" mnemonicParsing="false" onAction="#Sign_In_OnClick" prefHeight="44.0" prefWidth="119.0" text="SIGN IN" textFill="#454c4d">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+               <stylesheets>
+                  <URL value="@CrudStyle.css" />
+                  <URL value="@../../../crud.css" />
+               </stylesheets></Button>
             <ImageView fitHeight="58.0" fitWidth="72.0" layoutX="246.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../Users/Molka/Downloads/icons8-user-50.png" />

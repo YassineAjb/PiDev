@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: E0E0E7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Crud">
+<AnchorPane prefHeight="600.0" prefWidth="1052.0" style="-fx-background-color: E0E0E7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Crud">
    <children>
       <StackPane layoutX="258.0" prefHeight="600.0" prefWidth="794.0" style="-fx-background-color: #ADADBAFF;">
          <children>
@@ -26,15 +27,15 @@
                         <Pane fx:id="pnlMenus" layoutX="-139.0" layoutY="-91.0" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </Pane>
-                  <AnchorPane layoutX="24.0" layoutY="63.0" prefHeight="366.0" prefWidth="619.0" styleClass="white-bg" stylesheets="@../../../crud.css">
+                  <AnchorPane layoutX="24.0" layoutY="97.0" prefHeight="471.0" prefWidth="744.0" styleClass="white-bg" stylesheets="@../../../crud.css">
                      <children>
-                        <TableView fx:id="tableuser" layoutX="37.0" layoutY="27.0" prefHeight="311.0" prefWidth="534.0" styleClass="column-header-background">
+                        <TableView fx:id="tableuser" layoutX="37.0" layoutY="57.0" prefHeight="388.0" prefWidth="667.0" styleClass="column-header-background">
                            <columns>
-                              <TableColumn fx:id="emailcol" maxWidth="1352.0001220703125" minWidth="30.0" prefWidth="106.4000244140625" text="Email" />
-                              <TableColumn fx:id="mot_de_passe_col" maxWidth="1000.0" minWidth="30.0" prefWidth="108.00003051757812" text="mot_de_passe" />
-                              <TableColumn fx:id="date_creationcol" maxWidth="1567.9998779296875" minWidth="30.0" prefWidth="123.20001220703125" text="date_creation" />
-                              <TableColumn fx:id="roleCol" maxWidth="967.9998779296875" minWidth="30.0" prefWidth="60.00006103515625" text="role" />
-                              <TableColumn fx:id="cincol" maxWidth="1639.998779296875" minWidth="30.0" prefWidth="130.39999999999998" text="cin" />
+                              <TableColumn fx:id="emailcol" maxWidth="1352.0001220703125" minWidth="30.0" prefWidth="180.79995727539062" text="Email" />
+                              <TableColumn fx:id="mot_de_passe_col" maxWidth="1000.0" minWidth="27.199951171875" prefWidth="112.0" text="mot_de_passe" />
+                              <TableColumn fx:id="date_creationcol" maxWidth="1567.9998779296875" minWidth="30.0" prefWidth="94.39996337890625" text="date_creation" />
+                              <TableColumn fx:id="roleCol" maxWidth="967.9998779296875" minWidth="0.0" prefWidth="129.60003662109375" text="role" />
+                              <TableColumn fx:id="NumTel" maxWidth="1639.998779296875" minWidth="30.0" prefWidth="150.4000244140625" text="NumTelCol" />
                            </columns>
                            <stylesheets>
                               <URL value="@../../../style.css" />
@@ -43,17 +44,27 @@
                         </TableView>
                      </children>
                   </AnchorPane>
+                  <ImageView fx:id="downloadPdf" fitHeight="65.0" fitWidth="53.0" layoutX="699.0" layoutY="21.0" onMouseClicked="#exportToPdf" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-export-pdf-100.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="404.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/symbole-de-linterface-de-recherche.png" />
+                     </image>
+                  </ImageView>
                </children></Pane>
          </children>
       </StackPane>
       <AnchorPane prefHeight="600.0" prefWidth="266.0" styleClass="nav-form" stylesheets="@../../../crud.css">
          <children>
-            <Label layoutX="51.0" layoutY="137.0" text="Welcome!" textAlignment="CENTER" textFill="#1b1a1a" underline="true">
+            <Label layoutX="51.0" layoutY="160.0" text="Welcome!" textAlignment="CENTER" textFill="#231010" underline="true">
                <font>
                   <Font name="Arial Bold Italic" size="34.0" />
                </font>
             </Label>
-            <Button fx:id="AddButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="15.0" layoutY="326.0" mnemonicParsing="false" onAction="#AddButton" prefHeight="42.0" prefWidth="224.0" style="-fx-background-color: #FFFFF;" stylesheets="@../../../crud.css" text="Add">
+            <Button fx:id="AddButton" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="15.0" layoutY="366.0" mnemonicParsing="false" onAction="#AddButton" prefHeight="42.0" prefWidth="224.0" style="-fx-background-color: #FFFFF;" stylesheets="@../../../crud.css" text="Add" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -72,12 +83,12 @@
                   <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnSignout1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="14.0" layoutY="232.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="225.0" style="-fx-background-color: #FFFFF;" styleClass="vbox_btn" stylesheets="@../../../crud.css" text="Home">
+            <Button fx:id="btnSignout1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="40.0" layoutY="257.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #FFFFF;" styleClass="vbox_btn" stylesheets="@../../../crud.css" text="Home" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <padding>
                   <Insets left="50.0" />
                </padding>
                <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="27.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/icons8_Home_32px.png" />
                      </image>
@@ -87,7 +98,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnreturnSign" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="18.0" layoutY="418.0" mnemonicParsing="false" onAction="#returnSign" prefHeight="42.0" prefWidth="226.0" style="-fx-background-color: #FFFFF;" styleClass="vbox_btn" stylesheets="@../../../crud.css" text="Sign Out">
+            <Button fx:id="btnreturnSign" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="18.0" layoutY="468.0" mnemonicParsing="false" onAction="#returnSign" prefHeight="42.0" prefWidth="226.0" style="-fx-background-color: #FFFFF;" styleClass="vbox_btn" stylesheets="@../../../crud.css" text="Sign Out" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -102,13 +113,14 @@
                   <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView fitHeight="100.0" fitWidth="106.0" layoutX="77.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="100.0" fitWidth="106.0" layoutX="77.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../image/icons8-user-48.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
+      <TextField fx:id="Search" layoutX="684.0" layoutY="24.0" prefHeight="35.0" prefWidth="220.0" promptText="Search:" styleClass="text-field-with-line" stylesheets="@../../../style.css" />
    </children>
    <effect>
       <DropShadow color="#1b1eeb" />

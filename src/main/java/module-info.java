@@ -12,6 +12,7 @@ module com.example.demo {
     requires org.apache.pdfbox;
     requires java.mail;
     requires atlantafx.base;
+    requires twilio;
 
     exports utils;
     opens utils to javafx.fxml;

@@ -9,9 +9,9 @@ public class Session {
       {
           this.user=user;
       }
-      public Session Start_session(User user)
+      public static Session Start_session(User user)
       {
-          if(this.session==null)
+          if(session==null)
           {
               session=new Session(user);
           }
@@ -20,9 +20,11 @@ public class Session {
       public void clearSession()
       {
           this.user=null;
+          session=null;
       }
       public static  Session getSession()
       {
+
           return session;
       }
       public  User getUser()
