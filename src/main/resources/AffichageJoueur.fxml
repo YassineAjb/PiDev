@@ -3,42 +3,51 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: E0E0E7FF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AjouterJoueur">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1553.0" style="-fx-background-color: E0E0E7FF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AffichageJoueur">
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="22.0" layoutY="17.0" prefHeight="542.0" prefWidth="236.0" style="-fx-background-color: #FFFFFF;">
+      <VBox id="menuu" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="777.0" prefWidth="200.0" style=" -fx-background-radius: 0 20 20 0;" styleClass="menuu" stylesheets="@style.css">
          <children>
             <Label layoutX="26.0" layoutY="10.0">
                <font>
                   <Font name="Arial Bold Italic" size="29.0" />
                </font>
             </Label>
-            <Label text="SWIFTMINDER">
+            <Label>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="Arial Bold Italic" size="29.0" />
+                  <Font name="Arial Bold Italic" size="22.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Label>
             <Label layoutX="26.0" layoutY="10.0">
                <font>
                   <Font name="Arial Bold Italic" size="29.0" />
                </font>
             </Label>
-            <Label layoutX="26.0" layoutY="63.0">
-               <font>
-                  <Font name="Arial Bold Italic" size="29.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnAcceuil" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Acceuil" textFill="#e7e5e5">
+            <Button fx:id="btnAcceuil" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="190.0" stylesheets="@style.css" text="Acceuil" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,7 +62,7 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
             <Button fx:id="btncalendrier" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Calendrier">
@@ -65,19 +74,22 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
-            <Button fx:id="btnReservation" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reservation">
+            <Button id="Reservation" fx:id="btnReservation" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Reservation">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/icons8_Slider__32px.png" />
+                        <Image url="@images/shippingtruck.png" />
                      </image>
+                     <effect>
+                        <ColorAdjust contrast="-1.0" />
+                     </effect>
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
             <Button fx:id="btnJoueurs" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Joueurs">
@@ -89,10 +101,10 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
-            <Button fx:id="btnStaff" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Staff">
+            <Button fx:id="btnContrats" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Contrats">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -101,7 +113,7 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
             <Button fx:id="btnBoutique" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Boutique">
@@ -113,7 +125,7 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
             <Button fx:id="btnSettings1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="384.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Election">
@@ -125,13 +137,10 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="30.0" />
                </padding>
             </Button>
             <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" text="Sign Out">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -139,27 +148,36 @@
                      </image>
                   </ImageView>
                </graphic>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
             </Button>
+            <Label layoutX="26.0" layoutY="63.0">
+               <font>
+                  <Font name="Arial Bold Italic" size="29.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
-      <TextField fx:id="PositionTF" layoutX="499.0" layoutY="220.0" prefHeight="25.0" prefWidth="408.0" />
-      <Label layoutX="396.0" layoutY="224.0" text="Position" />
-      <TextField fx:id="HauteurTF" layoutX="499.0" layoutY="288.0" prefHeight="25.0" prefWidth="408.0" />
-      <Label layoutX="396.0" layoutY="292.0" text="Hauteur" />
-      <TextField fx:id="PoidsTF" layoutX="499.0" layoutY="362.0" prefHeight="25.0" prefWidth="408.0" />
-      <Label layoutX="396.0" layoutY="366.0" text="Poids" />
-      <TextField fx:id="PiedfortTF" layoutX="499.0" layoutY="422.0" prefHeight="25.0" prefWidth="408.0" />
-      <Button layoutX="831.0" layoutY="470.0" mnemonicParsing="false" onAction="#ajouterJoueur" prefHeight="36.0" prefWidth="74.0" text="Ajouter" />
-      <Button layoutX="831.0" layoutY="522.0" mnemonicParsing="false" onAction="#naviguezVersAffichage" prefHeight="39.0" prefWidth="76.0" text="Afficher" />
-      <Label layoutX="396.0" layoutY="430.0" text="Piedfort" />
-      <Label layoutX="396.0" layoutY="49.0" text="Nom" />
-      <Label layoutX="396.0" layoutY="107.0" text="Prenom" />
-      <Label layoutX="396.0" layoutY="164.0" text="Age" />
-      <TextField fx:id="NomTF" layoutX="497.0" layoutY="41.0" prefHeight="25.0" prefWidth="408.0" />
-      <TextField fx:id="PrenomTF" layoutX="499.0" layoutY="99.0" prefHeight="25.0" prefWidth="408.0" />
-      <TextField fx:id="AgeTF" layoutX="499.0" layoutY="156.0" prefHeight="25.0" prefWidth="408.0" />
+      <VBox layoutX="210.0" layoutY="117.0" prefHeight="664.0" prefWidth="1344.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="652.0" prefWidth="1313.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <ScrollPane fx:id="JoueurScroll" prefHeight="664.0" prefWidth="1160.0" styleClass="transparent" stylesheets="@style.css">
+                     <content>
+                        <GridPane fx:id="gridJoueurs" prefHeight="1.0" prefWidth="49.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
-   <effect>
-      <DropShadow color="#1b1eeb" />
-   </effect>
 </AnchorPane>
